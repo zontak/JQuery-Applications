@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>List Countryes</title>
+	<script type="text/javascript" src="JavaScript/jQuery.js"></script>
+	<script type="text/javascript" src="requester.js"></script>
+</head>
+<body>
+	<div class="warpper">
+		<ul id="countryes">
+
+		</ul>
+	</div>
+
+	<script>
+		$(document).ready(function(){
+
+			// Get Countryes from Parse.com
+			httpRequester.getJSON("https://api.parse.com/1/classes/Country",
+				function(data){
+					$.each(data.results , function(key,country){
+						$('#countryes').append('<li>' + country.name + '</li>');
+					})
+				},
+				function() {
+					alert("error");
+				}
+			);
+		})
+	</script>
+</body>
+</html>
