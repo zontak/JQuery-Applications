@@ -2,30 +2,66 @@
 <html>
 <head>
 	<title>List Countryes</title>
-	<script type="text/javascript" src="JavaScript/jQuery.js"></script>
-	<script type="text/javascript" src="requester.js"></script>
 </head>
 <body>
 	<div class="warpper">
-		<ul id="countryes">
-
-		</ul>
+	<input type="text" id="addCountry" placeholder="Add Country">
+	<input type="submit" id="addCountryButton" value="Add Country">
+	<ul id="countryes"></ul>
 	</div>
 
+	<script type="text/javascript" src="libs/jQuery.js"></script>
+	<script type="text/javascript" src="config.js"></script>
+	<script type="text/javascript" src="http-requester.js"></script>
+	<script type="text/javascript" src="service.js"></script>
 	<script>
-		$(document).ready(function(){
+		$(document).ready(function(){	
+
+			var appendCountry = function(country) {
+				$('#countryes').append('<li>' + country.name + '<button data-id=' + country.objectId + ' class="deleteCountry">Delete Country</button></li>');
+			}
 
 			// Get Countryes from Parse.com
-			httpRequester.getJSON("https://api.parse.com/1/classes/Country",
+			service.getCountry(
 				function(data){
 					$.each(data.results , function(key,country){
-						$('#countryes').append('<li>' + country.name + '</li>');
+						appendCountry(country);
 					})
 				},
 				function() {
-					alert("error");
-				}
-			);
+					alert("error list countryes");
+				});
+
+			// Add Countryes in Parse.com
+			$('#addCountryButton').on('click', function() {
+				var country = $('#addCountry').val();
+
+				var data = {'name': country}; 
+				service.addCountry(data,
+					function() {
+						appendCountry(data);
+					},
+					function() {
+						alert("error add country");
+					}
+				);
+			});
+
+			// Delete Country in Parse.com
+			$('#countryes').on('click', '.deleteCountry', function() {
+
+				console.log('blaba');
+				var dataId = $(this).data('id');
+				var button = $(this);
+				service.deleteCountry(dataId,
+					function() {
+						button.parent().remove();
+					},
+					function() {
+						alert("error delete country");
+					}
+				);
+			});
 		})
 	</script>
 </body>
