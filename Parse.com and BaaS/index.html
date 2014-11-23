@@ -1,68 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>List Countryes</title>
-</head>
-<body>
-	<div class="warpper">
-	<input type="text" id="addCountry" placeholder="Add Country">
-	<input type="submit" id="addCountryButton" value="Add Country">
-	<ul id="countryes"></ul>
-	</div>
+	<head>
+		<title>List Countryes</title>
+	</head>
+	<body>
+		<div class="warpper">
+			<input type="text" id="addCountry" placeholder="Add Country">
+			<input type="submit" id="addCountryButton" value="Add Country">
+			<ul id="countryes"></ul>
+		</div>
 
-	<script type="text/javascript" src="libs/jQuery.js"></script>
-	<script type="text/javascript" src="config.js"></script>
-	<script type="text/javascript" src="http-requester.js"></script>
-	<script type="text/javascript" src="service.js"></script>
-	<script>
-		$(document).ready(function(){	
-
-			var appendCountry = function(country) {
-				$('#countryes').append('<li>' + country.name + '<button data-id=' + country.objectId + ' class="deleteCountry">Delete Country</button></li>');
-			}
-
-			// Get Countryes from Parse.com
-			service.getCountry(
-				function(data){
-					$.each(data.results , function(key,country){
-						appendCountry(country);
-					})
-				},
-				function() {
-					alert("error list countryes");
-				});
-
-			// Add Countryes in Parse.com
-			$('#addCountryButton').on('click', function() {
-				var country = $('#addCountry').val();
-
-				var data = {'name': country}; 
-				service.addCountry(data,
-					function() {
-						appendCountry(data);
-					},
-					function() {
-						alert("error add country");
-					}
-				);
-			});
-
-			// Delete Country in Parse.com
-			$('#countryes').on('click', '.deleteCountry', function() {
-
-				console.log('blaba');
-				var dataId = $(this).data('id');
-				var button = $(this);
-				service.deleteCountry(dataId,
-					function() {
-						button.parent().remove();
-					},
-					function() {
-						alert("error delete country");
-					}
-				);
-			});
-		})
-	</script>
-</body>
+		<script type="text/javascript" src="libs/jQuery.js"></script>
+		<script type="text/javascript" src="config.js"></script>
+		<script type="text/javascript" src="http-requester.js"></script>
+		<script type="text/javascript" src="service.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
 </html>
