@@ -22,26 +22,11 @@ var service = (function() {
         httpRequester.getJSON(API_URL + 'classes/Town?where={"country":{"__type":"Pointer","className":"Country","objectId":"' + countryId +'"}}', success, error);
     }
 
-    function addTown(data, success, error) {
-        httpRequester.postJSON(API_URL + 'classes/Town', data, success, error);
-    }
-
-    function deleteTown(countryId, success, error) {
-        httpRequester.deleteJSON(API_URL + "classes/Town/" + countryId, success, error);
-    }
-
-    function editTown(countryId, data, success, error) {
-        httpRequester.putJSON(API_URL + "classes/Town/" + countryId, data, success, error);
-    }
-
     return {
     	getCountry: getCountry,
     	addCountry: addCountry,
     	deleteCountry: deleteCountry,
         editCountry: editCountry,
-        getTowns: getTowns,
-        addTown: addTown,
-        deleteTown: deleteTown,
-        editTown: editTown
+        getTowns: getTowns
     };
 }());
