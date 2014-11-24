@@ -14,8 +14,8 @@ var service = (function() {
         httpRequester.deleteJSON(API_URL + "classes/Country/" + countryId, success, error);
     }
 
-    function editCountry(countryId, success, error) {
-        httpRequester.putJSON(API_URL + "classes/Country/" + countryId, success, error);
+    function editCountry(countryId, data, success, error) {
+        httpRequester.putJSON(API_URL + "classes/Country/" + countryId, data, success, error);
     }
 
     return {
