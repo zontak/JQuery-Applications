@@ -1,0 +1,33 @@
+.warpper {
+	border: 2px solid black;
+	margin: 0 auto;
+	width: 500px;
+	background-color: skyblue;
+}
+
+li {
+	list-style-image: url('../arrow.jpg');
+}
+
+#addCountry {
+	margin-left: 60px;
+	margin-top: 10px;
+}
+
+button {
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 5px;
+}
+
+input[type="text"] {
+	border-radius: 10px;
+}
+
+input[type="submit"] {
+	border-radius: 5px;
+}
+
+span {
+	margin-left: 30px;
+}

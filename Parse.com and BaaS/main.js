@@ -37,9 +37,13 @@ $(document).ready(function(){
 	// Add Towns in certain country 
 	$('#countries').on('click', '.saveTown', function() {
 		var listClass = $(this).parent().attr('class');
+		console.log(listClass);
 		var dataId = $(this).data('id');
+		console.log(dataId);
 		var town = $('.addTownInput[data-id=' + dataId + ']').val();
+		console.log(town);
 		var data = {"name": town, "country":{"__type":"Pointer","className":"Country","objectId":"" + dataId + ""}};
+		console.log(data);
 		service.addTown(data,
 			function() {
 				listTowns(dataId);
@@ -98,11 +102,9 @@ $(document).ready(function(){
 		var data = {'name': newTown}; 
 		service.editTown(dataId, data,
 			function() {
-				//console.log($('#countries').children().children().children());
 				listTowns();
 			},
 			function() {
-				alert("error add towns");
 			}
 		);
 	})
