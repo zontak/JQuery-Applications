@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery: adding after/before element Demo</title>
+	<script src="../JQuery.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<ul id="items-list">
+			<li>BMW</li>
+			<li>Audi</li>
+			<li class="special">Mercedes-Benz</li>
+			<li>Porsche</li>
+			<li>Aston Martin</li>
+		</ul>
+	</div>
+	<!-- Не съм отделил JavaScript-a в отделен файл за да е по-лесна проверката,
+		защото има само 2 реда код и не намерих смисъл да е на отделно :) -->
+	<script>
+	$('.special').after( "<p>After Test</p>" );
+	$('.special').before( "<p>Before Test</p>" );
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery: switch color element Demo</title>
+	<script src="../JQuery.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<ul id="items-list">
+			<li class="bmw">BMW</li>
+			<li class="audi">Audi</li>
+			<li class="mercedes">Mercedes-Benz</li>
+			<li class="porsche">Porsche</li>
+			<li class="aston-martin">Aston Martin</li>
+		</ul>
+	</div>
+	<label for="class">Class</label>
+	<input id="class" type="text">
+	</br>
+	<label for="color">Color</label>
+	<input id="color" type="color">
+	</br>
+	<input type="button" value="Paint">
+
+	<!-- Не съм отделил JavaScript-a в отделен файл за да е по-лесна проверката :) -->
+
+	<script>
+	$(document).ready(function () {
+		$('input[type=button]').click(function() {
+			var InputClassValue = $('#class').val();
+			var InputColorValue = document.getElementById("color").value;
+			$('.' + InputClassValue).css('background-color', InputColorValue);
+		});
+	});
+	</script>
+</body>
+</html>
